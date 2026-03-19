@@ -1,0 +1,2 @@
+to output to bucket 
+"scrapy crawl chocolatesprider -o s3://aws_secret@your-bucketname/path/to/myscrapedata.csv:csv"

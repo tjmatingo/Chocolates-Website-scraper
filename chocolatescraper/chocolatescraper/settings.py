@@ -59,10 +59,14 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # smallest number has higher priority
-
+'''
+pipeline initialisation
+'''
 ITEM_PIPELINES = {
    "chocolatescraper.pipelines.PriceToUSDPipeline": 100,
    "chocolatescraper.pipelines.DuplicatesPipeline": 200,
+   # "chocolatescraper.pipelines.SavingtoMySQLPipeline": 300,
+   "chocolatescraper.pipelines.SavingtoMyPostGresPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
