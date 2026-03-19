@@ -89,9 +89,9 @@ class SavingtoMyPostGresPipeline(object):
         self.connection = psycopg2.connect(
             host = 'localhost',
             user = 'postgres',
-            dbname = 'postgres',
+            dbname = 'chocolate_scraper',
             password = '12345678',
-            database = 'chocolate_scraping',
+            port = 5432,
         
         )
         self.curr = self.connection.cursor()
@@ -102,10 +102,10 @@ class SavingtoMyPostGresPipeline(object):
 
     def store_db(self, item):
         try: 
-            self.curr.execute(""" insert into chocolate_products (namel, price, url) values (%s, %s, %s)""", (
+            self.curr.execute(""" insert into chocolate_products (name, price, url) values (%s, %s, %s)""", (
                 item["name"],
                 item["price"],
-                item['url']
+                item["url"]
             ))
         except BaseException as e:
             print(e)
