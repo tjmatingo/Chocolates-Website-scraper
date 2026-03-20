@@ -5,5 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "botocore>=1.42.71",
+    "mysql-connector-python>=9.6.0",
+    "psycopg2>=2.9.11",
     "scrapy>=2.14.2",
+    "scrapy-user-agents>=0.1.1",
 ]
