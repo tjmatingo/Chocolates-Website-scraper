@@ -9,6 +9,12 @@
 
 BOT_NAME = "chocolatescraper"
 
+# best way to output data to csvis through settings file 
+# no need for -o filename.csv 
+FEEDS = {
+    'chocolates_data.csv': {"format": 'csv'}
+}
+
 SPIDER_MODULES = ["chocolatescraper.spiders"]
 NEWSPIDER_MODULE = "chocolatescraper.spiders"
 
@@ -22,7 +28,7 @@ ADDONS = {}
 ROBOTSTXT_OBEY = True
 
 # Concurrency and throttling settings
-#CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
 
@@ -67,8 +73,9 @@ pipeline initialisation
 ITEM_PIPELINES = {
    "chocolatescraper.pipelines.PriceToUSDPipeline": 100,
    "chocolatescraper.pipelines.DuplicatesPipeline": 200,
+   ## pipelines for interacting databases 
    # "chocolatescraper.pipelines.SavingtoMySQLPipeline": 300,
-   "chocolatescraper.pipelines.SavingtoMyPostGresPipeline": 300,
+   # "chocolatescraper.pipelines.SavingtoMyPostGresPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
