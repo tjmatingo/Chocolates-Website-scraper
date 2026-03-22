@@ -16,6 +16,15 @@ def get_proxy_url(url):
 
 
 class ChocolatespiderSpider(scrapy.Spider):
+
+    '''
+    custom scrapy feeds for output to csv file
+    '''
+    # custom_settings = {
+    #     'FEEDS': { 'chocolatecustomScrapyFeeds.csv': {'format': 'csv',}}
+    # }
+
+
     name = "chocolatespider"
     allowed_domains = ["chocolate.co.uk","proxy.scrapeops.io",]
     # start_urls = ["https://www.chocolate.co.uk/collections/all-products"]

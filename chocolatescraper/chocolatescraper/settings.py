@@ -11,8 +11,12 @@ BOT_NAME = "chocolatescraper"
 
 # best way to output data to csvis through settings file 
 # no need for -o filename.csv 
+
+
+# dynamic saving to ensure that each time it runs its saved to new folder
+
 FEEDS = {
-    'chocolates_data.csv': {"format": 'csv'}
+    'chocolates_data/%(name)s/%(name)s_%(time)s.csv': {"format": 'csv'}
 }
 
 SPIDER_MODULES = ["chocolatescraper.spiders"]
