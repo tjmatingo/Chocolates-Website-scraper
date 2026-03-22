@@ -11,13 +11,16 @@ BOT_NAME = "chocolatescraper"
 
 # best way to output data to csvis through settings file 
 # no need for -o filename.csv 
-
-
 # dynamic saving to ensure that each time it runs its saved to new folder
-
+# batch scraping if werer doing a large crawl so that they don't all get output into same file 
+# item count is the number of items in each scrape 
 FEEDS = {
-    'chocolates_data/%(name)s/%(name)s_%(time)s.csv': {"format": 'csv'}
+    'chocolatesD/%(name)s/%(name)s_%(time)s_batch_%(batch_id)d.csv': {
+        "format": 'csv',
+         'batch_item_count':10,
+         }
 }
+
 
 SPIDER_MODULES = ["chocolatescraper.spiders"]
 NEWSPIDER_MODULE = "chocolatescraper.spiders"
