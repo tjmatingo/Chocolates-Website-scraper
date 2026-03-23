@@ -7,7 +7,9 @@ requires-python = ">=3.14"
 dependencies = [
     "botocore>=1.42.71",
     "mysql-connector-python>=9.6.0",
+    "playwright>=1.58.0",
     "psycopg2>=2.9.11",
     "scrapy>=2.14.2",
+    "scrapy-playwright>=0.0.46",
     "scrapy-user-agents>=0.1.1",
 ]
