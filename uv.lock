@@ -576,6 +576,19 @@ wheels = [
 ]
 
 [[package]]
+name = "scrapy-splash"
+version = "0.11.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "scrapy" },
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ff/d9/afecfbb8d7b1f02a78ca563c958cf02f5c31e3155c40a421208c64e0a5cc/scrapy_splash-0.11.1.tar.gz", hash = "sha256:c7d5c155c76392b922f3090d133409d1b060a4991b027f3b77cc93abc2096214", size = 62286, upload-time = "2025-02-11T17:04:05.412Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/11/fd/5b4d6165acae877c1754566c97e9d52a15acd9e29f16e3908c563a9eb43f/scrapy_splash-0.11.1-py2.py3-none-any.whl", hash = "sha256:81d76bdc9033a2df6689e5738dbdb99027aaece4586b45a48ebd88736ec775df", size = 29267, upload-time = "2025-02-11T17:04:03.206Z" },
+]
+
+[[package]]
 name = "scrapy-user-agents"
 version = "0.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -597,6 +610,7 @@ dependencies = [
     { name = "psycopg2" },
     { name = "scrapy" },
     { name = "scrapy-playwright" },
+    { name = "scrapy-splash" },
     { name = "scrapy-user-agents" },
 ]
 
@@ -608,6 +622,7 @@ requires-dist = [
     { name = "psycopg2", specifier = ">=2.9.11" },
     { name = "scrapy", specifier = ">=2.14.2" },
     { name = "scrapy-playwright", specifier = ">=0.0.46" },
+    { name = "scrapy-splash", specifier = ">=0.11.1" },
     { name = "scrapy-user-agents", specifier = ">=0.1.1" },
 ]
 
