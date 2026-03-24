@@ -9,8 +9,8 @@ dependencies = [
     "mysql-connector-python>=9.6.0",
     "playwright>=1.58.0",
     "psycopg2>=2.9.11",
-    "scrapy>=2.14.2",
     "scrapy-playwright>=0.0.46",
+    "scrapy-selenium>=0.0.7",
     "scrapy-splash>=0.11.1",
     "scrapy-user-agents>=0.1.1",
 ]
