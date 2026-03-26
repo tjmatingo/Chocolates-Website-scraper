@@ -19,6 +19,14 @@ NEWSPIDER_MODULE = 'basic_scrapy_spider.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+SCRAPEOPS_API_KEY = "28c0b581-5cbd-415b-b747-d506a9bc09e2"
+SCRAPEOPS_PROXY_ENABLED = True
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
+}
+
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
