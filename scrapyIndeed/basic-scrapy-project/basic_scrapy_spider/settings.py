@@ -17,18 +17,20 @@ NEWSPIDER_MODULE = 'basic_scrapy_spider.spiders'
 #USER_AGENT = 'quotes_js_scraper (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
-SCRAPEOPS_API_KEY = "28c0b581-5cbd-415b-b747-d506a9bc09e2"
+SCRAPEOPS_API_KEY = '28c0b581-5cbd-415b-b747-d506a9bc09e2'
 SCRAPEOPS_PROXY_ENABLED = True
+
 
 DOWNLOADER_MIDDLEWARES = {
     'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
 }
 
 
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 1
+#CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay

@@ -564,6 +564,17 @@ wheels = [
 ]
 
 [[package]]
+name = "scrapeops-scrapy-proxy-sdk"
+version = "1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+    { name = "scrapy" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/62/ee/5ed406290d3f3d94bb1216b2ae84801652d1924b7e7685258af7fced3bdb/scrapeops_scrapy_proxy_sdk-1.0.tar.gz", hash = "sha256:466e43fa2e6508635c1aa89f21c3ec16223949d97452a776d04ce72b27d8ed14", size = 4126, upload-time = "2022-12-01T11:01:28.801Z" }
+
+[[package]]
 name = "scrapy"
 version = "2.14.2"
 source = { registry = "https://pypi.org/simple" }
@@ -651,6 +662,7 @@ dependencies = [
     { name = "mysql-connector-python" },
     { name = "playwright" },
     { name = "psycopg2" },
+    { name = "scrapeops-scrapy-proxy-sdk" },
     { name = "scrapy-playwright" },
     { name = "scrapy-selenium" },
     { name = "scrapy-splash" },
@@ -664,6 +676,7 @@ requires-dist = [
     { name = "mysql-connector-python", specifier = ">=9.6.0" },
     { name = "playwright", specifier = ">=1.58.0" },
     { name = "psycopg2", specifier = ">=2.9.11" },
+    { name = "scrapeops-scrapy-proxy-sdk", specifier = ">=1.0" },
     { name = "scrapy-playwright", specifier = ">=0.0.46" },
     { name = "scrapy-selenium", specifier = ">=0.0.7" },
     { name = "scrapy-splash", specifier = ">=0.11.1" },
