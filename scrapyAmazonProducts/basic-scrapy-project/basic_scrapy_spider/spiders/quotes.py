@@ -31,11 +31,11 @@ class AmazonSearchProductSpider(scrapy.Spider):
             last_page = available_pages[-1]
             for page_num in range(2, int(last_page)):
                 amazon_search_url = f'https://www.amazon.com/s?k{keyword}&page={page_num}'
-                yield scrapy.Request(url=amazon_search_url, callback=self.parse_product_data, meta={'keyword': keyword, 'page': page_num})
+                yield scrapy.Request(url=amazon_search_url, callback=self.discovery_product_urls, meta={'keyword': keyword, 'page': page_num})
                 
 
     def parse_product_data(self, response):
-        image_data = json.loads(re.findall(r"colorImages':.*initial':\s*(\[.+?\])},\n", response.text)[0])
+        image_data = json.loads(re.findall(r"colorImages':.*'initial':\s*(\[.+?\])},\n", response.text)[0])
         variant_data = re.findall(r'dimensionValuesDisplayData"\s*:\s* ({.+?}),\n', response.text)
         feature_bullets = [bullet.strip() for bullet in response.css("#feature-bullets li ::text").get*()]
         price = response.css('.a-price span[aria-hidden="true"] ::text').get("")
