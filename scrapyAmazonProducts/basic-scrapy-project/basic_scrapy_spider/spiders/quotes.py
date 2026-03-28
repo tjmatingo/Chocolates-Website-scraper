@@ -17,6 +17,7 @@ class AmazonSearchProductSpider(scrapy.Spider):
         page =  response.meta['page']
         keyword = response.meta['keyword']
 
+        # discoover product urls
         search_products = response.css('div.s-result-item[data-component-type=s-search-result]')
         for product in search_products:
             relative_url = product.css('h2>a::attr(href)').get()
@@ -33,3 +34,7 @@ class AmazonSearchProductSpider(scrapy.Spider):
                 yield scrapy.Request(url=amazon_search_url, callback=self.parse_product_data, meta={'keyword': keyword, 'page': page_num})
                 
 
+    def parse_product_data(self, response):
+        image_data = json.loads(re.findall(r"colorImages':.*initial':\s*(\[.+?\])},\n", response.text)[0])
+        variant_data = re.findall(r'dimensionValuesDisplayData"\s*:\s* ({.+?}),\n', response.text)
+        feature_bullets = [bullet.strip() for bullet in response.css("#feature-bullets li ::text").get*()]
