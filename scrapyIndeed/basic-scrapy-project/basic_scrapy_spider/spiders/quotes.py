@@ -43,7 +43,7 @@ class IndeedJobSpider(scrapy.Spider):
 
 
 
-            job_lists = json_blob['metaData']['mosaicProviderJobCardsModel']['result']
+            job_lists = json_blob['metaData']['mosaicProviderJobCardsModel']['results']
             for index, job in enumerate(job_lists):
                 if job.get('jobkey') is not None:
                     job_url = 'https://www.indeed.com/m/basecamp/viewjob?viewtype=embedded&jk=' + job.get('jobkey')
@@ -62,11 +62,11 @@ class IndeedJobSpider(scrapy.Spider):
         keyword = response.meta['keyword']
         page = response.meta['page']
         position = response.meta['position']
-        script_tag = re.findall(r"_initialData=(\{.+?\})", response.text)
+        script_tag = re.findall(r"_initialData=(\{.+?\});", response.text)
         if script_tag is not None:
             json_blob = json.loads(script_tag[0])
-            job = json_blob['jsonInfoWrapperModel']['jobInfoModel']
-            sanitizedJobDescription = json_blob['jobInfoWrapperModel']['jonInfoModel']['sanitizedJobDescription']
+            job = json_blob['jobInfoWrapperModel']['jobInfoModel']['jobInfoHeaderModel']
+            sanitizedJobDescription = json_blob['jobInfoWrapperModel']['jobInfoModel']['sanitizedJobDescription']
 
             yield {
                 'keyword': keyword,
