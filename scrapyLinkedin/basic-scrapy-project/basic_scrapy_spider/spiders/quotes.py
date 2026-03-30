@@ -80,11 +80,11 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
                 if len(data_ranges) == 2:
                     experience['start_time'] = data_ranges[0]
                     experience['end_time'] = data_ranges[1]
-                    experience['duration'] = block.css('span.data-range__duration::text').get()
+                    experience['duration'] = block.css('span.data-range span.before:middot::text').get()
                 elif len(data_ranges) == 1:
                     experience['start_time'] = data_ranges[0]
                     experience['end_time'] = 'present'
-                    experience['duration'] = block.css('span.data-range__duration::text').get()
+                    experience['duration'] = block.css('span.data-range span.before:middot::text').get()
 
             except Exception as e:
                 print('experience --> time ranges', e)
@@ -93,3 +93,54 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
                 experience['duration'] = ''
 
             item['experience'].append(experience)
+
+        '''
+        EDUCATION SECTION
+        '''
+
+        item['education'] = []
+        education_blocks = response.css('li.education__list-item')        
+        for block in education_blocks:
+            education = {}
+
+            # organisation
+            education['organisation'] = block.css('h3 a span::text').get(default='').strip()
+
+            # organisation profile url
+            education['organisation_profile'] = block.css('h3 a::attr(href)').get(default='').strip('?')[0]
+
+            # course details 
+            try: 
+                education['course_details'] = ''
+                for text in block.css('h4 span::text').getall():
+                    education['course_details'] = education['course_details'] + text.strip() + ' '
+                education['course_details'] = education['course_details'].strip()
+            except Exception as e:
+                print('education --> course_details', e)
+                education['course_details'] = ''
+            
+
+            # description
+            education['description'] = block.css('div.education__item--details p::text').get(default='').strip()
+
+
+
+            # time range 
+            try: 
+                data_ranges = block.css('span.data-range time::text').getall()
+
+                if len(data_ranges) == 2:
+                    education['start_time'] = data_ranges[0]
+                    education['end_time'] = data_ranges[1]
+                elif len(data_ranges) == 1:
+                    education['start_time'] = data_ranges[0]
+                    education['end_time'] = 'present'
+
+            except Exception as e:
+                print('education --> time_ranges', e)
+                education['start_time'] = ''
+                education['end_time'] = ''
+
+            item['education'].append(education)
+
+        yield item
