@@ -20,14 +20,14 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
         SUMMARY SECTION
         '''
 
-        summary_box = response.css('section.top-card-layout')
+        summary_box = response.css('div.top-card-layout__card')
         item['name'] = summary_box.css('h1::text').get().strip()
         item['description'] = summary_box.css('h2::text').get().strip()
 
         # location
 
         try: 
-            item['location'] = summary_box.css('div.top-card__subline-item::text').get()
+            item['location'] = summary_box.css('div.top-card-layout__first-subline-item span::text').get()
         except: 
             item['location'] = summary_box.css('span.top-card__subline-item::text').get().strip()
             if 'followers' in item['location'] or 'connections' in item['location']:
@@ -36,7 +36,7 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
         item['followers'] = ''
         item['connections'] = ''
 
-        for span_text in summary_box.css('span.top-card__subliner-item::text').getall():
+        for span_text in summary_box.css('div.not-first-middot span::text').getall():
             if 'followers' in span_text:
                 item['followers'] = span_text.replace('followers', '').strip()
             if 'connections' in span_text:
@@ -53,4 +53,37 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
         '''
 
         item['experience'] = []
-        experience_block = response.css('li.experience-item')
+        experience_blocks = response.css('li.profile-section-card')
+        for block in experience_blocks:
+            experience = {}
+            # organisation profile url 
+            experience['organisation_profile'] = block.css('h4 a::attr(href)').get(default='').split('?')[0]
+
+            # location
+            experience['location'] = block.css('p.experience-item__location::text').get(default='').strip()
+
+
+            try: 
+                experience['description'] = block.css('p.show-more-less-text__text--more::text').get().strip()
+            except Exception as e:
+                print('experience --> desctiption', e)
+                try:
+                    experience['description'] = block.css('p.show-more-less-text__text--less::text').get().strip()
+                except Exception as e:
+                    print('experience --> desctiption', e)
+                    experience['description'] = ''
+            
+            # time range
+            try:
+                data_ranges = block.css('span.data-range time::text').getall()
+
+                if len(data_ranges) == 2:
+                    experience['start_time'] = data_ranges[0]
+                    experience['end_time'] = data_ranges[1]
+                    experience['duration'] = block.css('span.data-range__duration::text').get()
+                elif len(data_ranges) == 1:
+                    experience['start_time'] = data_ranges[0]
+                    experience['end_time'] = 'present'
+                    experience['duration'] = block.css('span.data-range__duration::text').get()
+
+            
