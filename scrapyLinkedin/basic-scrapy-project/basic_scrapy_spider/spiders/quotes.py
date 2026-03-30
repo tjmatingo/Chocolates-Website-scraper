@@ -53,14 +53,14 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
         '''
 
         item['experience'] = []
-        experience_blocks = response.css('li.profile-section-card')
+        experience_blocks = response.css('li.experience-group__position')
         for block in experience_blocks:
             experience = {}
             # organisation profile url 
             experience['organisation_profile'] = block.css('h4 a::attr(href)').get(default='').split('?')[0]
 
             # location
-            experience['location'] = block.css('p.experience-item__location::text').get(default='').strip()
+            experience['location'] = block.css('p.experience-item__meta-item::text').get(default='').strip()
 
 
             try: 
@@ -86,4 +86,10 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
                     experience['end_time'] = 'present'
                     experience['duration'] = block.css('span.data-range__duration::text').get()
 
-            
+            except Exception as e:
+                print('experience --> time ranges', e)
+                experience['start_time'] = ''
+                experience['end_time'] = ''
+                experience['duration'] = ''
+
+            item['experience'].append(experience)
