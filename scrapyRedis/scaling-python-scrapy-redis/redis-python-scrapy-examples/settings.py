@@ -97,4 +97,4 @@ SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
 # Redis Connection URL
-REDIS_URL = 'redis://<username>:<password>@<redis-connection-url>:<redis-port-number>'
+REDIS_URL = 'redis://default:Cl3UQPYBrkiE2DNf1TC8eqbGBm6ABPuv@redis-10209.c8.us-east-1-2.ec2.cloud.redislabs.com:10209'
