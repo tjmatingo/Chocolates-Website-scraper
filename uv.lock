@@ -537,6 +537,15 @@ wheels = [
 ]
 
 [[package]]
+name = "redis"
+version = "7.4.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/7f/3759b1d0d72b7c92f0d70ffd9dc962b7b7b5ee74e135f9d7d8ab06b8a318/redis-7.4.0.tar.gz", hash = "sha256:64a6ea7bf567ad43c964d2c30d82853f8df927c5c9017766c55a1d1ed95d18ad", size = 4943913, upload-time = "2026-03-24T09:14:37.53Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/74/3a/95deec7db1eb53979973ebd156f3369a72732208d1391cd2e5d127062a32/redis-7.4.0-py3-none-any.whl", hash = "sha256:a9c74a5c893a5ef8455a5adb793a31bb70feb821c86eccb62eebef5a19c429ec", size = 409772, upload-time = "2026-03-24T09:14:35.968Z" },
+]
+
+[[package]]
 name = "requests"
 version = "2.32.5"
 source = { registry = "https://pypi.org/simple" }
@@ -617,6 +626,20 @@ wheels = [
 ]
 
 [[package]]
+name = "scrapy-redis"
+version = "0.9.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "redis" },
+    { name = "scrapy" },
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cd/97/1ef7dc41b60b56dd33fdb31b81e6eddba3421be70f2adfee5dba961bc471/scrapy_redis-0.9.1.tar.gz", hash = "sha256:5f8b18611fadb2d7726870535ad3b0d28e0a7a1375d807101579237462e346e7", size = 268008, upload-time = "2024-07-06T21:59:19.497Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/82/d1/6ff55616d376d9a9f88ff2329838928bb5041773131251d70e310fc39e1d/scrapy_redis-0.9.1-py2.py3-none-any.whl", hash = "sha256:9d15ba3423fd35d23e3795fb9e063532dedc272dd38efd1409b52a15a22a2490", size = 18146, upload-time = "2024-07-06T21:59:15.472Z" },
+]
+
+[[package]]
 name = "scrapy-selenium"
 version = "0.0.7"
 source = { registry = "https://pypi.org/simple" }
@@ -664,6 +687,7 @@ dependencies = [
     { name = "psycopg2" },
     { name = "scrapeops-scrapy-proxy-sdk" },
     { name = "scrapy-playwright" },
+    { name = "scrapy-redis" },
     { name = "scrapy-selenium" },
     { name = "scrapy-splash" },
     { name = "scrapy-user-agents" },
@@ -678,6 +702,7 @@ requires-dist = [
     { name = "psycopg2", specifier = ">=2.9.11" },
     { name = "scrapeops-scrapy-proxy-sdk", specifier = ">=1.0" },
     { name = "scrapy-playwright", specifier = ">=0.0.46" },
+    { name = "scrapy-redis", specifier = ">=0.9.1" },
     { name = "scrapy-selenium", specifier = ">=0.0.7" },
     { name = "scrapy-splash", specifier = ">=0.11.1" },
     { name = "scrapy-user-agents", specifier = ">=0.1.1" },
