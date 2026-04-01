@@ -7,12 +7,16 @@ class LinkedCompany(scrapy.Spider):
 
     company_pages = [
         'https://www.linkedin.com/company/usebraintrust?trk=public_jobs_jserp-result_job-search-card-subtitle',
-        'https://www.linkedin.com/company/centraprise?trk=public_jobs_jserp-result_job-search-card-subtitle'
+        'https://www.linkedin.com/company/centraprise?trk=public_jobs_jserp-result_job-search-card-subtitle',
+        'https://www.linkedin.com/company/the-emerald-recruiting-group?trk=public_jobs_topcard-org-name',
         ]
     
     async def start(self):
         company_index_tracker = 0
-        first_url = self.company_pages[company_index_traacker]
+
+        self.readUrlsfromFile()
+        
+        first_url = self.company_pages[company_index_tracker]
         yield scrapy.Request(url=first_url, callback=self.parse_response, meta={"company_index_tracker": company_index_tracker})
 
 
@@ -54,3 +58,16 @@ class LinkedCompany(scrapy.Spider):
             next_url = self.company_pages[company_index_tracker]
 
             yield scrapy.Request(url=next_url, callback=self.parse_response, meta={'company_index_tracker': company_index_tracker})
+
+    def readUrlsfromFile(self):
+        self.company_pages = []
+        with open('jobs.json', 'wb') as fl:
+            jobsFromFile = json.load(fl)
+
+            for job in jobsFromFile:
+                if job['company_link'] != 'not-found':
+                    self.company_pages.append(job['company_link'])
+
+
+        # remove duplicate links - prevent spider shutting down on duplicate
+        self.company_pages = list(set(self.company_pages))
