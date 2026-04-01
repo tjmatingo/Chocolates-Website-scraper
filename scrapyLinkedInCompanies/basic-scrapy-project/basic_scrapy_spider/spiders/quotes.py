@@ -61,7 +61,7 @@ class LinkedCompany(scrapy.Spider):
 
     def readUrlsfromFile(self):
         self.company_pages = []
-        with open('jobs.json', 'wb') as fl:
+        with open('jobs.json') as fl:
             jobsFromFile = json.load(fl)
 
             for job in jobsFromFile:
