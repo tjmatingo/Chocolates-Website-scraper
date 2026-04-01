@@ -5,7 +5,13 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
     name = 'linkedIn_people_profile'
 
     async def start(self):
-        profile_list = ['johnstankey']
+        profile_list = ['johngerzema', 'johnkraski', 'johnstankey', 
+                        'johndonahoe','joshualu', 'joshuachou', 
+                        'joshuanuka', 'joshuacohen', 'tinotendaheri', 
+                        'tinotendamagwaza', 'tinotendasimata', 'tinotendachemhuru', 
+                        'tinotendamatingo', 'benjamin', 'anne', 
+                        'samjacobs', 'sammarchant', 'samneo', 
+                        'noahgreenberg', 'noahin', 'noahfeldman']
         for profile in profile_list:
             linked_people_url = f'https://www.linkedin.com/in/{profile}/'
             yield scrapy.Request(url=linked_people_url, callback=self.parse_profile, meta={'profile':profile, 'linkedin_url':linked_people_url})
